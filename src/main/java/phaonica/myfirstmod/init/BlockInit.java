@@ -8,6 +8,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import phaonica.myfirstmod.MyFirstMod;
 import phaonica.myfirstmod.init.blocks.CustomOre;
 
 public class BlockInit 
@@ -30,7 +31,7 @@ public class BlockInit
 		// GameRegistry.register(block);
 		ForgeRegistries.BLOCKS.register(block);
 		
-		block.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);		
+		block.setCreativeTab(MyFirstMod.tutorial_tab);		
 		ItemBlock item = new ItemBlock(block);
 		item.setRegistryName(block.getRegistryName());
 		
