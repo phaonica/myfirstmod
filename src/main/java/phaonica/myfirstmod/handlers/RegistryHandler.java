@@ -26,6 +26,9 @@ public class RegistryHandler
 		
 		ArmorInit.init();
 		ArmorInit.register();
+		
+		RecipeHandler.registerCrafting();
+		RecipeHandler.registerSmelting();
 
 	}
 }
