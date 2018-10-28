@@ -2,7 +2,9 @@ package phaonica.myfirstmod.handlers;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import phaonica.myfirstmod.init.BlockInit;
@@ -18,6 +20,17 @@ public class RecipeHandler
 		Object[] params = new Object[] {"SSS","SIS","SSS", 'S', Blocks.STONE, 'I', ItemInit.tutorial_ingot};
 		
 		GameRegistry.addShapedRecipe(name, group, output, params);
+		
+		ResourceLocation nameB = new ResourceLocation("phaomfm:tutorial_ore");
+		ResourceLocation groupB = new ResourceLocation("phaomfm:tutorial_blocks");
+		ItemStack outputB = new ItemStack(BlockInit.tutorial_ore,2);
+		
+		Ingredient[] paramsB = new Ingredient[] {
+					Ingredient.fromItem(ItemInit.tutorial_ingot), 
+					Ingredient.fromItem(Item.getItemFromBlock(BlockInit.tutorial_ore))
+				};
+		
+		GameRegistry.addShapelessRecipe(nameB, groupB, outputB, paramsB);
 		
 		
 	}
