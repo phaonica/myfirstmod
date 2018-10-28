@@ -1,5 +1,7 @@
 package phaonica.myfirstmod.handlers;
 
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import phaonica.myfirstmod.gen.TutorialOreGen;
 import phaonica.myfirstmod.init.ArmorInit;
 import phaonica.myfirstmod.init.BlockInit;
 import phaonica.myfirstmod.init.ItemInit;
@@ -29,6 +31,8 @@ public class RegistryHandler
 		
 		RecipeHandler.registerCrafting();
 		RecipeHandler.registerSmelting();
+		
+		GameRegistry.registerWorldGenerator(new TutorialOreGen(), 0);
 
 	}
 }
