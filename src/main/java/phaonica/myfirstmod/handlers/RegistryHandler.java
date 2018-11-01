@@ -21,7 +21,6 @@ public class RegistryHandler
 		
 		BlockInit.init();
 		BlockInit.register();		
-		BlockInit.registerRenders();
 		
 		ToolInit.init();
 		ToolInit.register();

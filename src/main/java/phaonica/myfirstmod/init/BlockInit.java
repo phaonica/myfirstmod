@@ -38,21 +38,11 @@ public class BlockInit
 		// GameRegistry.register(block);
 		ForgeRegistries.ITEMS.register(item);
 
+		Item item2 = Item.getItemFromBlock(block);
+		int metadata = 0; // no metadata for this item		
+		ResourceLocation name = block.getRegistryName();
+		ModelResourceLocation model = new ModelResourceLocation(name , "inventory");
+		ModelLoader.setCustomModelResourceLocation(item2, metadata, model);
 	}
 	
-	public static void registerRenders()
-	{
-		registerRender(tutorial_ore);
-	}
-	
-	public static void registerRender(Block block)
-	{
-		Item item = Item.getItemFromBlock(block);
-		// REGISTER ITEM NAME, META, AND TEXTURE		
-		int metadata = 0; // no metadata for this item
-		ResourceLocation name = item.getRegistryName();
-		ModelResourceLocation model = new ModelResourceLocation(name, "inventory");
-		ModelLoader.setCustomModelResourceLocation(item, metadata, model);
-		
-	}
 }
