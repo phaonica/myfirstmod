@@ -2,4 +2,5 @@ item.tutorial_ingot.name=Tutorial Ingot
 tile.tutorial_ore.name=Tutorial Ore
 itemGroup.tutorial_tab=Tutorial Tab
 item.tutorial_helmet.name=Tutorial Helmet
-item.tutorial_pickaxe.name=Tutorial Pickaxe
+tile.planks_aluminium.name=Aluminium Planks
+tile.planks_tutorial.name=Tutorial Planks
