@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "phaomfm:blocks/log_aluminium_top",
+        "side": "phaomfm:blocks/log_aluminium"
+    }
+}
