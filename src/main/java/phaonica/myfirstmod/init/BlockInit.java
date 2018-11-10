@@ -15,13 +15,14 @@ import phaonica.myfirstmod.init.blocks.item.ItemBlockVariants;
 import phaonica.myfirstmod.init.blocks.trees.CustomBlockLeaves;
 import phaonica.myfirstmod.init.blocks.trees.CustomBlockLog;
 import phaonica.myfirstmod.init.blocks.trees.CustomBlockPlanks;
+import phaonica.myfirstmod.init.blocks.trees.CustomBlockSapling;
 
 public class BlockInit 
 {
 	
 	public static Block tutorial_ore;
 	
-	static Block planks,leaves,log;
+	public static Block planks,leaves,log, sapling;
 	
 	public static void init()
 	{
@@ -29,6 +30,7 @@ public class BlockInit
 		planks = new CustomBlockPlanks("planks");
 		log = new CustomBlockLog("log");
 		leaves = new CustomBlockLeaves("leaves");
+		sapling = new CustomBlockSapling("sapling");
 	}
 	
 	public static void register()
@@ -38,6 +40,7 @@ public class BlockInit
 		registerBlockWithVariants(planks, new ItemBlockVariants(planks));
 		registerBlockWithVariants(log, new ItemBlockVariants(log));
 		registerBlockWithVariants(leaves, new ItemBlockVariants(leaves));
+		registerBlockWithVariants(sapling, new ItemBlockVariants(sapling));
 	}
 	
 	public static void registerBlock(Block block)
@@ -82,6 +85,7 @@ public class BlockInit
 			registerRender(planks,i,"planks_" + CustomBlockPlanks.EnumType.values()[i].getName());
 			registerRender(log,i,"log_" + CustomBlockPlanks.EnumType.values()[i].getName());
 			registerRender(leaves,i,"leaves_" + CustomBlockPlanks.EnumType.values()[i].getName());
+			registerRender(sapling,i,"sapling_" + CustomBlockPlanks.EnumType.values()[i].getName());
 		}
 	}
 	
