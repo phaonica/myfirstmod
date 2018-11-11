@@ -6,6 +6,7 @@ import phaonica.myfirstmod.init.BlockInit;
 import phaonica.myfirstmod.init.ItemInit;
 import phaonica.myfirstmod.init.ToolInit;
 import phaonica.myfirstmod.world.gen.TutorialOreGen;
+import phaonica.myfirstmod.world.gen.TutorialTreeGen;
 
 public class RegistryHandler 
 {
@@ -33,6 +34,7 @@ public class RegistryHandler
 		RecipeHandler.registerSmelting();
 		
 		GameRegistry.registerWorldGenerator(new TutorialOreGen(), 0);
+		GameRegistry.registerWorldGenerator(new TutorialTreeGen(), 0);
 
 	}
 }
