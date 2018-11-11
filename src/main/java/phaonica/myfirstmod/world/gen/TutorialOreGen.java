@@ -1,4 +1,4 @@
-package phaonica.myfirstmod.gen;
+package phaonica.myfirstmod.world.gen;
 
 import java.util.Random;
 

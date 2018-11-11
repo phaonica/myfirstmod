@@ -27,6 +27,8 @@ import net.minecraft.world.gen.feature.WorldGenTrees;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import phaonica.myfirstmod.util.IMetaName;
+import phaonica.myfirstmod.world.feature.tree.WorldGenAluminumTree;
+import phaonica.myfirstmod.world.feature.tree.WorldGenTutorialTree;
 
 public class CustomBlockSapling extends BlockBush implements IGrowable, IMetaName
 {
@@ -44,6 +46,8 @@ public class CustomBlockSapling extends BlockBush implements IGrowable, IMetaNam
 	
 	public CustomBlockSapling(String name)
 	{
+		System.out.println("postInit called");
+
 		setUnlocalizedName(name);
 		setRegistryName(name);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(VARIANT, CustomBlockPlanks.EnumType.TUTORIAL).withProperty(STAGE, Integer.valueOf(0)));
@@ -124,34 +128,58 @@ public class CustomBlockSapling extends BlockBush implements IGrowable, IMetaNam
 	@Override
 	public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state)
 	{
+		
+		System.out.println("grow called");
+
 		// TODO Auto-generated method stub
 		if (((Integer)state.getValue(STAGE)).intValue() == 0)
 		{
+			System.out.println("not doing generateTree");
+
 			// if it's in state 0, no growing
 			worldIn.setBlockState(pos, state.cycleProperty(STAGE), 4);
 			
 		}
 		else
 		{
+			System.out.println("doing generateTree");
+
 			this.generateTree(worldIn, rand, pos, state);
 		}
 	}
 	
 	public void generateTree(World world, Random rand, BlockPos pos, IBlockState state)
 	{
-		if ( TerrainGen.saplingGrowTree(world, rand, pos)) return;
+		System.out.println("generateTree called");
+
+		if ( !TerrainGen.saplingGrowTree(world, rand, pos) ) 
+		{
+			System.out.println("doing saplingGrowTree");
+			return;			
+		}
+		else
+		{
+			System.out.println("not doing saplingGrowTree");
+		}
+		
 		WorldGenerator gen = (WorldGenerator)(rand.nextInt(10) == 0 ? new WorldGenBigTree(false) : new WorldGenTrees(false));
 		boolean flag = false;
 		
 		switch((CustomBlockPlanks.EnumType)state.getValue(VARIANT))
 		{
 		case TUTORIAL:
-			//gen = new WorldGenTutorialTree();
+			System.out.println("doing TUTORIAL");
+			gen = new WorldGenTutorialTree();
 			break;
 		case ALUMINIUM:
-			//gen = new WorldGenAluminumTree();
+			System.out.println("doing ALUMINIUM");
+			gen = new WorldGenAluminumTree();
 			break;
+		default:
+			System.out.println("doing none");
 		}
+		
+		
 		
 		IBlockState iBlockState = Blocks.AIR.getDefaultState();
 		if(flag)
@@ -183,20 +211,40 @@ public class CustomBlockSapling extends BlockBush implements IGrowable, IMetaNam
 	}
 	
 	@Override
+	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+	{
+	       if (!worldIn.isRemote)
+	        {
+	            super.updateTick(worldIn, pos, state, rand); //Calls the BlockBush version
+
+	            if (worldIn.getLightFromNeighbors(pos.up()) >= 9 && rand.nextInt(7) == 0)
+	            {
+	                this.grow(worldIn, rand, pos, state);
+	            }
+	        }
+	}
+	
+	@Override
 	public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient)
 	{
+		System.out.println("canGrow called");
+
 		return true;
 	}
 	
 	@Override
 	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state)
 	{
+		System.out.println("canUseBonemeal called");
+
 		return (double)worldIn.rand.nextFloat() < 8.45D;
 	}
 	
 	@Override
 	protected boolean canSustainBush(IBlockState state)
 	{
+		System.out.println("canSustainBush called");
+
 		// return blocks that sapling can grown on
         return state.getBlock() == Blocks.GRASS || state.getBlock() == Blocks.DIRT || state.getBlock() == Blocks.FARMLAND;
 	}
